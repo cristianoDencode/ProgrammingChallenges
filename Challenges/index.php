@@ -1,7 +1,8 @@
 <?php
-declare(strict_types=1);
 $rootPath = __DIR__;
-$directories = array_filter(glob($rootPath . '/*'), 'is_dir');
+$directories = array_filter(glob($rootPath . '/*'), function($path) {
+    return is_dir($path) && basename($path) !== 'vendor';
+});
 
 function formatName($name) {
     $parts = explode('-', basename($name));
@@ -48,8 +49,8 @@ function formatName($name) {
                         <div class="space-y-2">
                             <?php foreach ($subfolders as $sub): 
                                 $subName = basename($sub);
-                                $indexPath = $baseDir . '/' . $subName . '/index.php';
-                                $exists = file_exists($sub . '/index.php');
+                                $indexPath = $baseDir . '/' . $subName . '/';
+                                $exists = file_exists($sub . '/');
                             ?>
                                 <a href="<?= $exists ? $indexPath : '#' ?>" 
                                    class="flex items-center justify-between p-2 rounded-lg <?= $exists ? 'hover:bg-slate-800 text-slate-300' : 'opacity-40 cursor-not-allowed text-slate-500' ?>">

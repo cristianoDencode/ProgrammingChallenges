@@ -1,5 +1,5 @@
 <?php
-
+namespace APP\Problem;
 class Order
 {
     public function __construct(
