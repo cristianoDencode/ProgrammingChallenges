@@ -48,6 +48,13 @@ To manage the environment, navigate to the Docker folder:
     ```bash
     docker compose up -d --build --force-recreate
     ```
+* **Composer:**
+```text    
+In the ProgrammingChallenges/Challenges directory, accessed via the terminal at http://localhost:7681, run:   
+```
+```bash
+composer install
+```
 
 ### 🔗 Access Points
 - **Dashboard:** [http://localhost:8080](http://localhost:8080)
