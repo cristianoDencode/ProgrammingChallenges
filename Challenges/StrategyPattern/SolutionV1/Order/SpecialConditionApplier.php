@@ -8,7 +8,7 @@ use APP\SolutionV1\Order\Rate\PixRate;
 use APP\SolutionV1\Order\Rate\CreditCardRate;
 use Exception;
 
-class SpecialConditionFactory 
+class SpecialConditionApplier 
 {
     public static function apply(float $amount, DiscountInterface $type, RateInterface $payment) 
     {
