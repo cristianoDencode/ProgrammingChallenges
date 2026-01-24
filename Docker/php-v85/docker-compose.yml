@@ -24,16 +24,19 @@ services:
       - app-network
   # I chose not to use Portainer to keep the study environment as simple as possible.
   terminal:
-    image: tsl0922/ttyd:latest
-    container_name: php85-terminal
-    ports:
-      - "7681:7681"
-    volumes:
-      - ../../Challenges:/var/www/html
-    command: ttyd -W bash
-    working_dir: /var/www/html
-    networks:
-      - app-network
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: php85-terminal
+      ports:
+        - "7681:7681"
+      volumes:
+        - ../../Challenges:/var/www/html
+      # Agora o comando é direto e rápido
+      command: ttyd -W bash
+      working_dir: /var/www/html
+      networks:
+        - app-network
 
 networks:
   app-network:
