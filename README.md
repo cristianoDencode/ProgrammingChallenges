@@ -27,15 +27,43 @@ For every challenge, I follow this ritual:
 
 ---
 
-## 📂 Repository Structure
+## 🐳 Infrastructure (Docker)
 
-Each challenge lives in its own folder, structured for easy study:
+This lab runs on a dedicated Docker environment. It includes **PHP 8.5-FPM**, **Nginx**, and a **Web Terminal (ttyd)** for an integrated experience.
+
+### 🎮 Commands
+
+To manage the environment, navigate to the Docker folder:
+`cd Docker/php-v85`
+
+* **Start the Lab:**
+    ```bash
+    docker compose up -d
+    ```
+* **Stop the Lab:**
+    ```bash
+    docker compose down
+    ```
+* **Rebuild (after config changes):**
+    ```bash
+    docker compose up -d --build --force-recreate
+    ```
+
+### 🔗 Access Points
+- **Dashboard:** [http://localhost:8080](http://localhost:8080)
+- **Web Terminal:** [http://localhost:7681](http://localhost:7681)
+
+---
+
+## 📂 Repository Structure
 
 ```text
 /Challenges
   ├── /01-Strategy-Pattern-PHP
-  │   ├── problem/          # Original "dirty" code and the prompt used
-  │   ├── solution-v1/      # Refactoring focused on Design Patterns
-  │   ├── solution-v2/      # Refactoring focused on Clean Architecture
-  │   └── README.md         # Study notes and lessons learned
-  └── ...
+  │   ├── problem/          # Original "dirty" code
+  │   ├── solution-v1/      # Focus on Design Patterns
+  │   ├── solution-v2/      # Focus on Clean Architecture
+  │   └── README.md         # Lessons learned
+  └── index.php             # Dynamic Dashboard
+/Docker
+  └── /php-v85              # Lab Infrastructure
