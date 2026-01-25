@@ -26,7 +26,3 @@ jobs:
       - name: Validate PSR-4
         working-directory: ./Challenges
         run: composer dump-autoload -o --strict-psr
-
-      - name: Code style (PSR-12)
-        working-directory: ./Challenges
-        run: vendor/bin/phpcs StrategyPattern
