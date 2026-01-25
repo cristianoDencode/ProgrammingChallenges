@@ -1,5 +1,5 @@
 <?php
-namespace App\SolutionV1\Order\Discount;
+namespace APP\SolutionV1\Order\Discount;
 
 class RegularDiscount implements DiscountInterface
 {

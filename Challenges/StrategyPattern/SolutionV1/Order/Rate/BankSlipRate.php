@@ -1,5 +1,5 @@
 <?php
-namespace App\SolutionV1\Order\Rate;
+namespace APP\SolutionV1\Order\Rate;
 
 class BankSlipRate implements RateInterface
 {

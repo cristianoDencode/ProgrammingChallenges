@@ -1,6 +1,7 @@
 <?php
-namespace App\SolutionV1\Order\Rate;
+namespace APP\SolutionV1\Order\Rate;
 
-interface RateInterface {
+interface RateInterface 
+{
     public function apply(float $amount): float;
 }
