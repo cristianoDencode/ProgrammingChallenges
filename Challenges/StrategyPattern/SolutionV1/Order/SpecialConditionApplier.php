@@ -14,12 +14,16 @@ class SpecialConditionApplier
     {
         if ($type instanceof VipDiscount
         && $payment instanceof PixRate) {
-            return $amount -= 2; 
+            $amount -= 2; 
         }
         
         if ($type instanceof EmployeeDiscount 
         && $payment instanceof CreditCardRate) {
-            return $amount += 10;
+            $amount += 10;
+        }
+
+        if($amount < 0) {
+            $amount = 0;
         }
         
         return round($amount);
