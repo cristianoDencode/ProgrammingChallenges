@@ -16,14 +16,17 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: 'latest'
           tools: composer
 
       - name: Install dependencies
+        working-directory: ./Challenges
         run: composer install --no-interaction --prefer-dist
 
       - name: Validate PSR-4
+        working-directory: ./Challenges
         run: composer dump-autoload -o --strict-psr
 
       - name: Code style (PSR-12)
+        working-directory: ./Challenges
         run: vendor/bin/phpcs StrategyPattern
