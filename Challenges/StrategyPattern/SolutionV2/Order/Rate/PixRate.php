@@ -1,16 +1,18 @@
 <?php
+
 namespace APP\SolutionV2\Order\Rate;
+
 use APP\SolutionV2\Order\Order;
 
 class PixRate implements RateInterface
 {
-    public function isApplicable(Order $order): bool 
+    public function isApplicable(Order $order): bool
     {
-        return $order->paymentMethod === 'pix';
+        return 'pix' === $order->paymentMethod;
     }
 
-    public function apply (float $finalAmount): float
+    public function apply(float $finalAmount): float
     {
-       return $finalAmount -= 5;
+        return $finalAmount -= 5;
     }
-} 
+}

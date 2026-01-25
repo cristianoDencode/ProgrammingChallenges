@@ -1,32 +1,33 @@
 <?php
+
 namespace APP\SolutionV2\Order;
+
 use APP\SolutionV2\Order\Discount\DiscountInterface;
 use APP\SolutionV2\Order\Rate\RateInterface;
 use APP\SolutionV2\Order\SpecialCondition\SpecialConditionInterface;
-use Exception;
 
-class OrderCalculator 
+class OrderCalculator
 {
     private array $discountInstance;
     private array $ratesInstance;
     private array $specialConditionInstance;
     private float $amountCalc;
-    
-    public function addDiscount(DiscountInterface $discount): void 
+
+    public function addDiscount(DiscountInterface $discount): void
     {
         $this->discountInstance[] = $discount;
     }
 
-    public function addRate(RateInterface $rate): void 
+    public function addRate(RateInterface $rate): void
     {
         $this->ratesInstance[] = $rate;
     }
 
-    public function addSpecialCondition(SpecialConditionInterface $specialCondition): void 
+    public function addSpecialCondition(SpecialConditionInterface $specialCondition): void
     {
         $this->specialConditionInstance[] = $specialCondition;
     }
-    
+
     public function calculateDiscount(Order $order)
     {
         /*
@@ -39,9 +40,10 @@ class OrderCalculator
         foreach ($this->discountInstance as $discount) {
             if ($discount->isApplicable($order)) {
                 return $this->amountCalc = $discount->apply($order->baseAmount);
-            }            
+            }
         }
-        throw new Exception('Invalid customer type');
+
+        throw new \Exception('Invalid customer type');
     }
 
     public function calculateRate(Order $order)
@@ -49,9 +51,10 @@ class OrderCalculator
         foreach ($this->ratesInstance as $rate) {
             if ($rate->isApplicable($order)) {
                 return $this->amountCalc = $rate->apply($this->amountCalc);
-            }  
+            }
         }
-        throw new Exception('Invalid payment method');
+
+        throw new \Exception('Invalid payment method');
     }
 
     public function specialCalculate(Order $order)
@@ -59,9 +62,9 @@ class OrderCalculator
         foreach ($this->specialConditionInstance as $specialCondition) {
             if ($specialCondition->isApplicable($order)) {
                 return $this->amountCalc = $specialCondition->apply($this->amountCalc);
-            }  
+            }
         }
+
         return $this->amountCalc;
     }
 }
-

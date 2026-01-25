@@ -1,6 +1,8 @@
 <?php
+
 namespace APP\SolutionV2\Order;
 
-interface OrderInterface {
+interface OrderInterface
+{
     public function getFinalAmount(): float;
 }
