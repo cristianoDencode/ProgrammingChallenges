@@ -1,7 +1,21 @@
 {
-    "autoload": {
-        "psr-4": {
-            "APP\\": "StrategyPattern/"
-        }
+  "autoload": {
+    "psr-4": {
+      "APP\\": "StrategyPattern/"
     }
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.9",
+    "friendsofphp/php-cs-fixer": "^3.60"
+  },
+  "scripts": {
+    "lint": [
+    "composer dump-autoload -o --strict-psr",
+    "phpcs --standard=PSR12 StrategyPattern"
+    ],
+
+    "fix": [
+      "php-cs-fixer fix StrategyPattern"
+    ]
+  }
 }

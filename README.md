@@ -62,6 +62,14 @@ composer install
 
 ---
 
+## Useful Commands
+
+You can use the following Composer scripts to maintain code quality:
+
+* `composer lint`: Checks for PSR compliance.
+* `composer fix`: Automatically fixes code style
+---
+
 ## 📂 Repository Structure
 
 ```text
