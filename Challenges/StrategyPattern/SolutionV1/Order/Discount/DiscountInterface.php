@@ -1,4 +1,5 @@
 <?php
+
 namespace APP\SolutionV1\Order\Discount;
 
 interface DiscountInterface
