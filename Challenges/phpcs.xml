@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="Project rules">
+    <description>PHPCS configuration</description>
+
+    <file>StrategyPattern</file>
+    <exclude-pattern>*/StrategyPattern/Problem/*</exclude-pattern>
+    <rule ref="PSR12"/>
+</ruleset>

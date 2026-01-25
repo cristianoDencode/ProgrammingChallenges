@@ -12,16 +12,13 @@ return (new Config())
     ->setRules([
         '@auto' => true,
         '@auto:risky' => true,
-        '@PhpCsFixer' => true,
-        '@PSR12' => true,
-        'array_syntax' => ['syntax' => 'short'],
-        'no_unused_imports' => true
+        '@PhpCsFixer' => true
     ])
     // 💡 by default, Fixer looks for `*.php` files excluding `./vendor/` - here, you can groom this config
     ->setFinder(
         (new Finder())
             // 💡 root folder to check
-            ->in(__DIR__)
+            ->in(__DIR__ . '/StrategyPattern')
             ->exclude('Problem')
             // 💡 additional files, eg bin entry file
             // ->append([__DIR__.'/bin-entry-file'])
