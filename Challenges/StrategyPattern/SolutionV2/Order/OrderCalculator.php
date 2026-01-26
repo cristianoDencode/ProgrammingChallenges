@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace APP\SolutionV2\Order;
 
 use APP\SolutionV2\Order\Discount\DiscountInterface;

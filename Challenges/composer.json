@@ -1,10 +1,17 @@
 {
+  "config": {
+        "platform": {
+            "php": "8.5.2"
+        }
+  },
   "autoload": {
     "psr-4": {
-        "APP\\": "StrategyPattern/"
+        "APP\\": "StrategyPattern/",
+        "Observer\\": "Observer/"
     },
     "exclude-from-classmap": [
-      "StrategyPattern/Problem/index.php"
+      "StrategyPattern/Problem/index.php",
+      "Observer/Problem/index.php"
     ]
   },
   "require-dev": {
@@ -14,7 +21,8 @@
   "scripts": {
     "lint": "composer dump-autoload -o --strict-psr",
     "fix": [
-      "php-cs-fixer fix StrategyPattern"
+      "php-cs-fixer fix StrategyPattern",
+      "php-cs-fixer fix Observer"
     ]
   }
 }

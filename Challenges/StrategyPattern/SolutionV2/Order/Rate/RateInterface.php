@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace APP\SolutionV2\Order\Rate;
 
 use APP\SolutionV2\Order\Order;

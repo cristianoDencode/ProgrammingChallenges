@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace APP\SolutionV1\Order;
 
 use APP\SolutionV1\Order\Rate\BankSlipRate;
