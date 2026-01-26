@@ -1,4 +1,7 @@
-Strategy Pattern Refactoring – Code Smells Analysis
+# Notice
+Ignore using floats for monetary values. In a system, I’d prefer using integers and then displaying them converted to two decimal places whenever necessary.
+
+# Strategy Pattern Refactoring – Code Smells Analysis 
 Identifying Code Smells
 
 OrderCalculator has multiple responsibilities, including:
