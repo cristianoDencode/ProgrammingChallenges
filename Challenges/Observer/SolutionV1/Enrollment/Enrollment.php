@@ -6,13 +6,18 @@ namespace Observer\SolutionV1\Enrollment;
 
 use Observer\SolutionV1\Enrollment\EnrollmentState\EnrollmentStateInterface;
 use Observer\SolutionV1\Enrollment\EnrollmentState\CreatedState;
+use Observer\SolutionV1\Enrollment\EnrollmentObserver\EventObserverInterface;
+
 
 class Enrollment
 {
+    private string $message;
+    private string $subject;
     public function __construct(
-        public string $address,
-        public string $course,
-        private EnrollmentStateInterface $status = new CreatedState()
+        private string $address,
+        private string $course,
+        private EnrollmentStateInterface $status = new CreatedState(),
+        private array $observers = []
     ) {
         $this->status->created($this);
     }
@@ -25,6 +30,7 @@ class Enrollment
     public function confirm(): void
     {
         $this->status->confirmed($this);
+        $this->message = "";
     }
 
     public function activate(): void
@@ -36,4 +42,18 @@ class Enrollment
     {
         $this->status->cancelled($this);
     }
+
+    public function addObservers(EventObserverInterface $observer): void
+    {
+        $this->observers[] = $observer;
+    }
+
+    public function notifyObservers():void
+    {
+        foreach ($this->observers as $observer){
+            $observer->update($this->address, $this->message);
+        }
+    }
+
+    
 }

@@ -17,7 +17,7 @@ class Enrollment
 
     public function sendEmail($to, $subject, $message): void
     {
-        echo "[EMAIL] Para: {$to} | {$subject}\n";
+        echo "[EMAIL] to: {$to} | {$subject}\n";
     }
 
     public function confirm(): void
@@ -25,14 +25,14 @@ class Enrollment
         if ('created' == $this->status) {
             $this->status = 'confirmed';
 
-            echo "Matrícula confirmada\n";
+            echo "Enrollment confirmed.\n";
             echo '<br>';
-            $this->sendEmail($this->studentEmail, 'Matrícula confirmada', '...');
+            $this->sendEmail($this->studentEmail, $this->courseName, 'Enrollment confirmed.');
             echo '<br>';
-            file_put_contents('log.txt', "CONFIRMADO: {$this->studentEmail}\n", FILE_APPEND);
+            file_put_contents('log.txt', "Confirmed: {$this->studentEmail}\n", FILE_APPEND);
 
         } else {
-            echo "Não pode confirmar nesse estado\n";
+            echo "The student must be registered.\n";
         }
     }
 
@@ -41,14 +41,14 @@ class Enrollment
         if ('confirmed' == $this->status) {
             $this->status = 'active';
 
-            echo "Curso iniciado\n";
+            echo "Course started.\n";
             echo '<br>';
-            $this->sendEmail($this->studentEmail, 'Curso iniciado', $this->studentEmail.' iniciou o curso');
+            $this->sendEmail($this->studentEmail,  $this->courseName, 'Course started.');
             echo '<br>';
-            $this->sendEmail('coord@escola.com', 'Aluno ativo', $this->studentEmail.' iniciou o curso');
+            $this->sendEmail('coord@escola.com',  $this->courseName, $this->studentEmail.': Student activated');
 
         } else {
-            echo "Não pode ativar\n";
+            echo "The student registration must be confirmed.\n";
         }
     }
 
@@ -61,28 +61,32 @@ class Enrollment
 
             echo "Matrícula cancelada\n";
             echo '<br>';
-            $this->sendEmail($this->studentEmail, 'Matrícula cancelada', 'Sua matrícula foi cancelada');
+            $this->sendEmail($this->studentEmail, $this->courseName, 'Enrollment canceled');
             echo '<br>';
-            $this->sendEmail('coord@escola.com', 'Cancelamento', 'Aluno cancelou matrícula');
+            $this->sendEmail('coord@escola.com', $this->courseName, $this->studentEmail.': Enrollment canceled');
         } else {
-            echo "Não pode cancelar\n";
+            echo "The student cannot be canceled.\n";
         }
     }
 }
 
-$matriculas = [['aluno' => 'aluno1@email.com', 'curso' => 'Arquitetura de Software'], ['aluno' => 'aluno2@email.com', 'curso' => 'Arquitetura de Software'], ['aluno' => 'aluno3@email.com', 'curso' => 'Arquitetura de Software'], ['aluno' => 'aluno4@email.com', 'curso' => 'Arquitetura de Software'], ['aluno' => 'aluno5@email.com', 'curso' => 'Arquitetura de Software'],
+$registers = [['student' => 'student1@email.com', 'course' => 'Software Architecture']
+, ['student' => 'student2@email.com', 'course' => 'Software Architecture']
+, ['student' => 'student3@email.com', 'course' => 'Software Architecture']
+, ['student' => 'student4@email.com', 'course' => 'Software Architecture']
+, ['student' => 'student5@email.com', 'course' => 'Software Architecture'],
 ];
-$totalRegistro = count($matriculas);
+$total = count($registers);
 $count = 1;
-foreach ($matriculas as $matricula) {
-    $registro = (object) $matricula;
-    $enrollment = new Enrollment($registro->aluno, $registro->curso);
+foreach ($registers as $register) {
+    $register = (object) $register;
+    $enrollment = new Enrollment($register->student, $register->course);
     $enrollment->confirm();
     $enrollment->activate();
     echo '<br>';
     echo '<hr>';
     echo '<br>';
-    if ($totalRegistro == $count) {
+    if ($total == $count) {
         echo '<br>';
         $enrollment->cancel();
     }
