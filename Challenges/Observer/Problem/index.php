@@ -17,7 +17,7 @@ class Enrollment
 
     public function sendEmail($to, $subject, $message): void
     {
-        echo "[EMAIL] to: {$to} | {$subject}\n";
+        echo "[EMAIL] to: {$to} | {$subject} | {$message}\n";
     }
 
     public function confirm(): void
@@ -30,6 +30,8 @@ class Enrollment
             $this->sendEmail($this->studentEmail, $this->courseName, 'Enrollment confirmed.');
             echo '<br>';
             file_put_contents('log.txt', "Confirmed: {$this->studentEmail}\n", FILE_APPEND);
+            echo 'LOG - OK';
+            echo '<br>';
 
         } else {
             echo "The student must be registered.\n";
@@ -45,7 +47,7 @@ class Enrollment
             echo '<br>';
             $this->sendEmail($this->studentEmail,  $this->courseName, 'Course started.');
             echo '<br>';
-            $this->sendEmail('coord@escola.com',  $this->courseName, $this->studentEmail.': Student activated');
+            $this->sendEmail('coord@course.com',  $this->courseName, $this->studentEmail.': Student activated');
 
         } else {
             echo "The student registration must be confirmed.\n";
@@ -63,7 +65,7 @@ class Enrollment
             echo '<br>';
             $this->sendEmail($this->studentEmail, $this->courseName, 'Enrollment canceled');
             echo '<br>';
-            $this->sendEmail('coord@escola.com', $this->courseName, $this->studentEmail.': Enrollment canceled');
+            $this->sendEmail('coord@course.com', $this->courseName, $this->studentEmail.': Enrollment canceled');
         } else {
             echo "The student cannot be canceled.\n";
         }

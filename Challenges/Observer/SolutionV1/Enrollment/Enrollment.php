@@ -6,18 +6,20 @@ namespace Observer\SolutionV1\Enrollment;
 
 use Observer\SolutionV1\Enrollment\EnrollmentState\EnrollmentStateInterface;
 use Observer\SolutionV1\Enrollment\EnrollmentState\CreatedState;
-use Observer\SolutionV1\Enrollment\EnrollmentObserver\EventObserverInterface;
+use Observer\SolutionV1\Enrollment\EventDispatcher;
+use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentConfirmedEvent;
+use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentActivatedEvent;
+use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentCancelledEvent;
 
 
 class Enrollment
 {
-    private string $message;
-    private string $subject;
+    public string $message;
     public function __construct(
-        private string $address,
-        private string $course,
-        private EnrollmentStateInterface $status = new CreatedState(),
-        private array $observers = []
+        public string $address,
+        public string $course,
+        private EventDispatcher $dispatcher,
+        private $status = new CreatedState()
     ) {
         $this->status->created($this);
     }
@@ -30,30 +32,30 @@ class Enrollment
     public function confirm(): void
     {
         $this->status->confirmed($this);
-        $this->message = "";
+        $this->message = 'Confirmed registration!';
+        $this->dispatcher->dispatch(
+            new EnrollmentConfirmedEvent(),
+            $this
+        );
     }
 
     public function activate(): void
     {
         $this->status->activated($this);
+        $this->message = 'Active registration!';
+        $this->dispatcher->dispatch(
+            new EnrollmentActivatedEvent(),
+            $this
+        );
     }
 
     public function cancel(): void
     {
         $this->status->cancelled($this);
-    }
-
-    public function addObservers(EventObserverInterface $observer): void
-    {
-        $this->observers[] = $observer;
-    }
-
-    public function notifyObservers():void
-    {
-        foreach ($this->observers as $observer){
-            $observer->update($this->address, $this->message);
-        }
-    }
-
-    
+        $this->message = 'Cancelled registration!';
+        $this->dispatcher->dispatch(
+            new EnrollmentCancelledEvent(),
+            $this
+        );
+    }    
 }
