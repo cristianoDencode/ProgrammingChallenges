@@ -6,47 +6,33 @@ namespace Observer\SolutionV1;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 use Observer\SolutionV1\Enrollment\Enrollment;
-use Observer\SolutionV1\Enrollment\EnrollmentObserver\CoordinatorObserver;
-use Observer\SolutionV1\Enrollment\EnrollmentObserver\InfrastructureObserver;
-use Observer\SolutionV1\Enrollment\EnrollmentObserver\StudentObserver;
-use Observer\SolutionV1\Enrollment\EventDispatcher;
+use Observer\SolutionV1\Enrollment\Facade\RegisterDispatcher;
 
 try {
-   
-    $dispatcher = new EventDispatcher();
-    $dispatcher->listen(
-        'enrollment.confirmed',
-        new StudentObserver()
-    );
-    $dispatcher->listen(
-        'enrollment.confirmed',
-        new InfrastructureObserver()
-    );
+    $dispatcher = RegisterDispatcher::register();
+    $registers = [['student' => 'student1@email.com', 'course' => 'Software Architecture']
+    , ['student' => 'student2@email.com', 'course' => 'Software Architecture']
+    , ['student' => 'student3@email.com', 'course' => 'Software Architecture']
+    , ['student' => 'student4@email.com', 'course' => 'Software Architecture']
+    , ['student' => 'student5@email.com', 'course' => 'Software Architecture'],
+    ];
+    $total = count($registers);
+    $count = 1;
+    foreach ($registers as $register) {
+        $register = (object) $register;
+        $enrollment = new Enrollment($register->student, $register->course, $dispatcher);
+        $enrollment->confirm();
+        $enrollment->activate();
+        echo '<br>';
+        echo '<hr>';
+        echo '<br>';
+        if ($total == $count) {
+            echo '<br>';
+            $enrollment->cancel();
+        }
+        ++$count;
+    }
 
-    $dispatcher->listen(
-        'enrollment.activated',
-        new CoordinatorObserver()
-    );
-    $dispatcher->listen(
-        'enrollment.activated',
-        new StudentObserver()
-    );
-
-    $dispatcher->listen(
-        'enrollment.cancelled',
-        new CoordinatorObserver()
-    );
-    $dispatcher->listen(
-        'enrollment.cancelled',
-        new StudentObserver()
-    );
-
-    $enrollment = new Enrollment('student1@email.com', 'Arquitetura de Software', $dispatcher);
-    $enrollment->confirm();
-    $enrollment->activate();
-    $enrollment->cancel();
-    // echo '<br>';
-    // var_dump($enrollment);
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
