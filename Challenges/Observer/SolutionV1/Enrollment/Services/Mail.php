@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Observer\SolutionV1\Enrollment\Services;
 
-class Mail 
+class Mail
 {
     public function dispatcherMail(string $email, string $subject, string $message): void
     {
-        echo "[EMAIL] to: { $email} | {$subject} | $message\n <br>";
+        echo "[EMAIL] to: { {$email}} | {$subject} | {$message}\n <br>";
     }
 }

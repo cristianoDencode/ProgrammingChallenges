@@ -45,9 +45,9 @@ class Enrollment
 
             echo "Course started.\n";
             echo '<br>';
-            $this->sendEmail($this->studentEmail,  $this->courseName, 'Course started.');
+            $this->sendEmail($this->studentEmail, $this->courseName, 'Course started.');
             echo '<br>';
-            $this->sendEmail('coord@course.com',  $this->courseName, $this->studentEmail.': Student activated');
+            $this->sendEmail('coord@course.com', $this->courseName, $this->studentEmail.': Student activated');
 
         } else {
             echo "The student registration must be confirmed.\n";
@@ -72,11 +72,7 @@ class Enrollment
     }
 }
 
-$registers = [['student' => 'student1@email.com', 'course' => 'Software Architecture']
-, ['student' => 'student2@email.com', 'course' => 'Software Architecture']
-, ['student' => 'student3@email.com', 'course' => 'Software Architecture']
-, ['student' => 'student4@email.com', 'course' => 'Software Architecture']
-, ['student' => 'student5@email.com', 'course' => 'Software Architecture'],
+$registers = [['student' => 'student1@email.com', 'course' => 'Software Architecture'], ['student' => 'student2@email.com', 'course' => 'Software Architecture'], ['student' => 'student3@email.com', 'course' => 'Software Architecture'], ['student' => 'student4@email.com', 'course' => 'Software Architecture'], ['student' => 'student5@email.com', 'course' => 'Software Architecture'],
 ];
 $total = count($registers);
 $count = 1;

@@ -1,7 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Observer\SolutionV1\Enrollment\EnrollmentEvent;
-use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentEventInterface;
 
 class EnrollmentCancelledEvent implements EnrollmentEventInterface
 {

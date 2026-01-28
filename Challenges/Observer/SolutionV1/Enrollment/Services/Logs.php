@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Observer\SolutionV1\Enrollment\Services;
 
-class Logs 
+class Logs
 {
     public function dispatcherLog(string $path, string $message): void
     {

@@ -6,15 +6,14 @@ namespace Observer\SolutionV1\Enrollment;
 
 use Observer\SolutionV1\Enrollment\EnrollmentState\EnrollmentStateInterface;
 use Observer\SolutionV1\Enrollment\EnrollmentState\CreatedState;
-use Observer\SolutionV1\Enrollment\EventDispatcher;
 use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentConfirmedEvent;
 use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentActivatedEvent;
 use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentCancelledEvent;
 
-
 class Enrollment
 {
     public string $message;
+
     public function __construct(
         public string $address,
         public string $course,
@@ -57,5 +56,5 @@ class Enrollment
             new EnrollmentCancelledEvent(),
             $this
         );
-    }    
+    }
 }

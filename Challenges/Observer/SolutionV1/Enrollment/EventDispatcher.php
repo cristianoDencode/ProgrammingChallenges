@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Observer\SolutionV1\Enrollment;
+
 use Observer\SolutionV1\Enrollment\EnrollmentEvent\EnrollmentEventInterface;
 use Observer\SolutionV1\Enrollment\EnrollmentObserver\EventObserverInterface;
-use Observer\SolutionV1\Enrollment\Enrollment;
 
 class EventDispatcher
 {
