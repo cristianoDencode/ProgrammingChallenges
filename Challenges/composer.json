@@ -7,11 +7,13 @@
   "autoload": {
     "psr-4": {
         "APP\\": "StrategyPattern/",
-        "Observer\\": "Observer/"
+        "Observer\\": "Observer/",
+        "Decorator\\": "Decorator/"
     },
     "exclude-from-classmap": [
       "StrategyPattern/Problem/index.php",
-      "Observer/Problem/index.php"
+      "Observer/Problem/index.php",
+      "Decorator/Problem/index.php"
     ]
   },
   "require-dev": {
@@ -22,7 +24,8 @@
     "lint": "composer dump-autoload -o --strict-psr",
     "fix": [
       "php-cs-fixer fix StrategyPattern",
-      "php-cs-fixer fix Observer"
+      "php-cs-fixer fix Observer",
+      "php-cs-fixer fix Decorator"
     ]
   }
 }
