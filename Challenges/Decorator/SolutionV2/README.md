@@ -1,0 +1,1 @@
+Note: In this solution, I decided to combine the Decorator and Chain of Responsibility patterns. I implemented the coupon logic using the Chain of Responsibility, while the remaining processes are handled by the Decorator.
