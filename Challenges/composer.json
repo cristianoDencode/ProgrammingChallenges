@@ -8,12 +8,14 @@
     "psr-4": {
         "APP\\": "StrategyPattern/",
         "Observer\\": "Observer/",
-        "Decorator\\": "Decorator/"
+        "Decorator\\": "Decorator/",
+        "Builder\\": "Builder/"
     },
     "exclude-from-classmap": [
       "StrategyPattern/Problem/index.php",
       "Observer/Problem/index.php",
-      "Decorator/Problem/index.php"
+      "Decorator/Problem/index.php",
+      "Builder/Problem/index.php"
     ]
   },
   "require-dev": {
@@ -25,7 +27,8 @@
     "fix": [
       "php-cs-fixer fix StrategyPattern",
       "php-cs-fixer fix Observer",
-      "php-cs-fixer fix Decorator"
+      "php-cs-fixer fix Decorator",
+      "php-cs-fixer fix Builder"
     ]
   }
 }
