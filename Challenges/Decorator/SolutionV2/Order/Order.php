@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Decorator\SolutionV2\Order;
 
 use Decorator\SolutionV2\Order\OrderDto\OrderDto;
-use Decorator\SolutionV2\Order\Charges\ChargesInterface;
 use Decorator\SolutionV2\Order\Charges\ChargesBase;
 use Decorator\SolutionV2\Order\Charges\Delivery\Delivery;
 use Decorator\SolutionV2\Order\Charges\Pack\Pack;

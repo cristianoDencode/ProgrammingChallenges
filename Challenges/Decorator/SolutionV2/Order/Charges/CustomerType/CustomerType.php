@@ -18,6 +18,7 @@ class CustomerType implements ChargesInterface
     {
         if ($this->order->orderDto->isLoyalCustomer) {
             $total = $this->charges->apply();
+
             return $total -= ($total * 0.05);
         }
     }
